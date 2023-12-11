@@ -1,0 +1,40 @@
+Telco customer churn
+Last Updated: 2023-10-21
+This sample data module tracks a fictional telco company's customer churn based on various factors. T he churn column indicates whether the customer departed within the last month. Other columns include gender, dependents, monthly charges, and many with information about the types of services each customer has.
+CLTV Category 
+that creates a set of categories based on the range of values for CLTV:
+case when ( CLTV ) <= 2500 then ('2000 - 2500')
+when ( CLTV ) <= 3000 then ('2501-3000')
+when ( CLTV ) <= 3500 then ('3001-3500')
+when ( CLTV ) <= 4000 then ('3501-4000')
+when ( CLTV ) <= 4500 then ('4001-4500')
+when ( CLTV ) <= 5000 then ('4501-5000')
+when ( CLTV ) <= 5500 then ('5001-5500')
+when ( CLTV ) <= 6000 then ('5501-6000')
+when ( CLTV ) <= 6500 then ('6001-6500')
+else ('6501-7000')
+end
+There is a calculated column that is named Churn Score Category that creates a set of categories based on the range of values for Churn Score:
+case when ( Churn_Score ) <= 10 then ('0-10')
+when ( Churn_Score ) <= 20 then ('11-20')
+when ( Churn_Score ) <= 30 then ('21-30')
+when ( Churn_Score ) <= 40 then ('31-40')
+when ( Churn_Score ) <= 50 then ('41-50')
+when ( Churn_Score ) <= 60 then ('51-60')
+when ( Churn_Score ) <= 70 then ('61-70')
+when ( Churn_Score ) <= 80 then ('71-80')
+when ( Churn_Score ) <= 90 then ('81-90')
+else ('91-100')
+end
+
+There is a calculated column that is named %Churned that calculates the percentage of customers who left the company (for example, they have a Churn Value = 1):
+_round ((aggregate ( Churn_Value)) / (aggregate(Count_))*100,1)
+
+This sample is located here: Team content > Samples > By industry > Telecommunications > Data > Telco customer churn
+
+The source data for this sample can be found here: Team content > Samples > Data > Source files > Telco
+Telco_customer_churn_demographics.xlsx
+Telco_customer_churn_location.xlsx
+Telco_customer_churn_population.xlsx
+Telco_customer_churn_services.xlsx
+Telco_customer_churn_status.xlsx
